@@ -1,0 +1,13 @@
+package com.miken.kotlinsampler
+
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
+
+@SpringBootTest
+class KotlinsamplerApplicationTests {
+
+	@Test
+	fun contextLoads() {
+	}
+
+}
