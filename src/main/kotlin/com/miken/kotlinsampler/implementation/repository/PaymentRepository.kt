@@ -10,6 +10,6 @@ import java.util.*
 class PaymentRepository(override val innerRepos: PaymentRepositoryJPA) : GenericRepository<Payment, Int>{
 
     fun findByGuid(id: UUID): Payment? {
-        return innerRepos.findByGuid(id);
+        return innerRepos.findByGuid(id)
     }
 }

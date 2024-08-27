@@ -37,6 +37,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.kafka:spring-kafka")
 	implementation("io.github.oshai:kotlin-logging-jvm:5.1.4")
+	implementation("org.apache.commons:commons-compress:1.26.0")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
