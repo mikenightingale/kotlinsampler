@@ -1,0 +1,52 @@
+server.port: 8081
+
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/kotlin
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+    database: postgresql
+
+    properties:
+      hibernate:
+        boot:
+          allow_jdbc_metadata_access: false
+      javax:
+        persistence:
+          schema-generation:
+            scripts:
+              create-target: create.sql
+              action: create
+            create-source: metadata
+
+  kafka:
+    enable: true
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      value-serializer: "org.springframework.kafka.support.serializer.JsonSerializer"
+    consumer:
+      group-id: "parallel1"
+      value-deserializer: "org.springframework.kafka.support.serializer.JsonDeserializer"
+      properties:
+        "[spring.json.trusted.packages]": "com.miken.kotlinsampler.adaptor.resource"
+
+  liquibase:
+    changeLog: 'classpath:db/changelog/changelog-main.xml'
+
+topic:
+  name: payment
+
+
+
+
+
+
+
+
+
