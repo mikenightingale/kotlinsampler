@@ -3,7 +3,6 @@ package com.miken.kotlinsampler.implementation.kafka
 import com.miken.kotlinsampler.adaptor.resource.PaymentResource
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.apache.kafka.common.serialization.StringSerializer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -12,12 +11,10 @@ import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
-import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.listener.ContainerProperties
 import org.springframework.kafka.listener.KafkaMessageListenerContainer
 import org.springframework.kafka.listener.MessageListener
 import org.springframework.kafka.support.serializer.JsonDeserializer
-import org.springframework.kafka.support.serializer.JsonSerializer
 import org.springframework.kafka.test.EmbeddedKafkaBroker
 import org.springframework.kafka.test.context.EmbeddedKafka
 import org.springframework.kafka.test.utils.ContainerTestUtils
@@ -40,13 +37,11 @@ class PaymentProducerTest{
     @Autowired
     lateinit var producer: PaymentProducer
 
-    val records: BlockingQueue<ConsumerRecord<String, Any>> = LinkedBlockingQueue();
+    val records: BlockingQueue<ConsumerRecord<String, Any>> = LinkedBlockingQueue()
     var container: KafkaMessageListenerContainer<String, Any>? = null
 
     @Autowired
     lateinit var embeddedKafkaBroker: EmbeddedKafkaBroker
-    @Autowired
-    lateinit var consumer: PaymentConsumer
 
 
     @BeforeAll
@@ -78,8 +73,8 @@ class PaymentProducerTest{
         givenPaymentMsgIsSend(msg)
 
         val poll = records.poll(1000, TimeUnit.MILLISECONDS)
-        assertThat(poll).isNotNull;
-        assertThat(poll.value()).isEqualTo(msg)
+        assertThat(poll).isNotNull
+        assertThat(poll!!.value()).isEqualTo(msg)
     }
 
     private fun givenPaymentMsgIsSend(paymentResource: PaymentResource) {

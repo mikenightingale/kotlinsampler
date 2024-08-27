@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.*
 
 
 @SpringBootTest
@@ -14,13 +15,14 @@ class PaymentRepositoryTest {
 
     @Autowired
     lateinit var genericRepository: PaymentRepository
+    val guid = UUID.randomUUID()
 
     @Test
     fun shouldSavePayment() {
         val p = providePayment()
         val result = genericRepository.save(p)
         assertThat(result.id).isGreaterThanOrEqualTo(1)
-        assertThat(result.toString()).endsWith("bic=DE1234567, iban=DE123456789123, currency=EUR, amount=99)")
+        assertThat(result.toString()).endsWith("bic=DE1234567, iban=DE123456789123, currency=EUR, amount=99, guid=$guid)")
     }
 
     @Test
@@ -28,7 +30,7 @@ class PaymentRepositoryTest {
         val save = genericRepository.save(providePayment())
         val byId = genericRepository.findById(save.id!!)
         assertThat(byId).isPresent()
-        assertThat(byId).hasValueSatisfying { s -> assertThat(s.toString()).isEqualTo("Payment(id=1, bic=DE1234567, iban=DE123456789123, currency=EUR, amount=99)") }
+        assertThat(byId).hasValueSatisfying { s -> assertThat(s.toString()).isEqualTo("Payment(id=1, bic=DE1234567, iban=DE123456789123, currency=EUR, amount=99, guid=$guid)") }
     }
 
     @Test
@@ -44,7 +46,8 @@ class PaymentRepositoryTest {
             iban = "DE123456789123",
             bic = "DE1234567",
             currency = "EUR",
-            amount = 99
+            amount = 99,
+            guid = guid
         )
 
     }

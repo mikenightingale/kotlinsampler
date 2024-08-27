@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.annotations.Parameter
+import java.util.*
 
 @Entity
 class Payment(
@@ -26,10 +27,11 @@ class Payment(
     var iban: String? = null,
     var currency: String? = null,
     var amount: Int? = null,
+    var guid: UUID? = null,
 ) : IdentifiedEntity {
 
     override fun toString(): String {
-        return "Payment(id=$id, bic=$bic, iban=$iban, currency=$currency, amount=$amount)"
+        return "Payment(id=$id, bic=$bic, iban=$iban, currency=$currency, amount=$amount, guid=$guid)"
     }
 
 }

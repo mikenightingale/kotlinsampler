@@ -44,7 +44,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.kafka:spring-kafka-test:3.2.2")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testImplementation("io.zonky.test:embedded-database-spring-test:2.5.0")
+	testImplementation("io.zonky.test:embedded-database-spring-test:2.5.1")
 	testImplementation("org.mockito:mockito-core:2.10.0")
 	testImplementation("org.awaitility:awaitility:4.2.0")
 
