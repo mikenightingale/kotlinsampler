@@ -29,8 +29,8 @@ private const val MSG_KEY = "bic"
 private const val TOPIC = "payment"
 
 @SpringBootTest
-@ActiveProfiles("test")
 @EmbeddedKafka(topics = [TOPIC], bootstrapServersProperty = "spring.kafka.bootstrap-servers")
+@ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PaymentProducerTest{
 

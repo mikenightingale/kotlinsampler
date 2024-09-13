@@ -3,9 +3,9 @@ server.port: 8081
 spring:
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/kotlin
+    url: jdbc:postgresql://${PG_HOST:localhost}:5432/kotlin
     username: postgres
-    password: postgres
+    password: example
   jpa:
     show-sql: true
     generate-ddl: true
@@ -27,7 +27,7 @@ spring:
 
   kafka:
     enable: true
-    bootstrap-servers: 127.0.0.1:9092
+    bootstrap-servers: ${KAFKA_BROKER:localhost}:9092
     producer:
       value-serializer: "org.springframework.kafka.support.serializer.JsonSerializer"
     consumer:
