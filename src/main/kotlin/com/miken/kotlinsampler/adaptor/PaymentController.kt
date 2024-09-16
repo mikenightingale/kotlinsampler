@@ -34,6 +34,4 @@ class PaymentController(
         val payment = paymentActions.findByGuid(guid)
         return ResponseEntity.ok( PaymentResource.fromEntity(payment!!))
     }
-
-
 }

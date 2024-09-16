@@ -7,15 +7,16 @@ import java.util.*
 interface GenericRepository<T : IdentifiedEntity, K> {
 
     val innerRepos: JpaRepository<T, K>
+
     fun save(entity: T): T {
         return innerRepos.save(entity)
     }
 
     fun findById(id: K): Optional<T> {
-        return innerRepos.findById(id!!);
+        return innerRepos.findById(id!!)
     }
 
     fun findAll(): List<T> {
-        return innerRepos.findAll();
+        return innerRepos.findAll()
     }
 }

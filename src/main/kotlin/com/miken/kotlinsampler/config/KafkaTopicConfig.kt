@@ -10,13 +10,10 @@ import org.springframework.kafka.annotation.EnableKafka
 @Configuration
 @EnableKafka
 class KafkaTopicConfig(
-
     @Value("\${topic.name}") var topicName: String
 ) {
 
     @Bean
-    fun newTopic(): NewTopic? {
-        return NewTopic(topicName, 2, 1.toShort())
-    }
+    fun newTopic() = NewTopic(topicName, 2, 1.toShort())
 
 }
